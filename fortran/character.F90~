@@ -1,0 +1,12 @@
+program character
+  implicit none
+  character(len=10) :: first, last
+  character(len=20) :: full
+
+  first = 'Kavya'
+  last = 'Rajesh'
+!  full = first
+  full = first // last
+  full = trim(first) // ' ' // trim(last)
+  print *, full
+end program character

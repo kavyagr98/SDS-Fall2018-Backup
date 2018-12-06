@@ -1,0 +1,18 @@
+program subroutine
+implicit none
+
+integer :: i,j
+real(4), dimension(10) :: m
+i = 2
+j = 3
+call sum(i,j)
+print *, m
+
+contains
+subroutine sum(k,l)
+integer :: k,l,add
+add = k+l
+print *, add
+end subroutine sum
+
+end program subroutine

@@ -1,0 +1,55 @@
+Module definitions
+  type point
+     real :: x,y
+   contains
+     procedure, public :: distance
+     procedure, public :: sum
+end type point
+
+  type rectangle
+     type(point) :: bl,tr
+  end type rectangle
+
+contains
+  real (4) function area(rect)
+    implicit none
+    type(rectangle), intent(in) :: rect
+    area = (rect%tr%x-rect%bl%x)*(rect%tr%y-rect%bl%y)
+  end function area
+  real (4) function distance(p1_input,p2_input)
+    implicit none
+    class(point) :: p1_input
+    type(point), intent(in) :: p2_input
+    distance = sqrt((p1_input%x-p2_input%x)**2 + (p1_input%y-p2_input%y)**2)
+  end function distance
+  type(point) function sum(point1_input, point2_input)
+    implicit none
+    class(point) :: point1_input
+    type(point), intent(in) :: point2_input
+    sum%x = point1_input%x+point2_input%x
+    sum%y = point1_input%y+point2_input%y
+  end function sum
+end Module definitions
+
+program points
+  use definitions
+  implicit none
+
+type(point) :: point1, point2, sum
+type(rectangle) :: rect1
+real(4) :: dist
+
+point1 = point(3,4)
+point2 = point(5,7)
+rect1 = rectangle(point1,point2)
+
+print *, "Area: ", area(rect1)
+dist = point1%distance(point2)
+print *, "Distance: ", dist
+sum = point1%add(point2)
+print *, "X coordinate: ", sum%x
+print *, "Y coordinate: ", sum%y
+end program points
+
+  
+

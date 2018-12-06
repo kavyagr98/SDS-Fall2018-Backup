@@ -1,0 +1,45 @@
+#include <cmath>
+#include <iostream>
+#include <string>
+using std::cout;
+using std::endl;
+using std::cin;
+using std::string;
+
+
+int main (){
+  
+  cout << "Enter your string: " << endl;
+  string txt;
+  cin >> txt;
+  cout << "Enter a number: " << endl;
+  int input;
+  cin >> input;
+  
+  for (char &c : txt){
+      c += input;
+      if (c>=65 and c<=90){
+      if (c>90)
+	c = c%26 + 64;}
+      if (c>=97 and c<=122){
+	if (c>122)
+	  c = c%26 + 96;}
+  }
+  cout << "Shifted:" << txt << endl;
+ }
+
+// to get out of here
+// first save:
+
+// C-x C-s
+// then exit:
+// C-x C-c
+// if you're stuck 
+// C-g
+// C-k : kill meaning successive line delete
+// C-y : yank back
+// C-v : next screen
+// Esc-v: previous screen
+// C-l : reposition current line
+// Esc > : end of file
+// Esc < : beginning of file

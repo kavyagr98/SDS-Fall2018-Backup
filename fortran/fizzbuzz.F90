@@ -1,0 +1,17 @@
+program fizzbuzz
+  implicit none
+  
+  integer :: input
+  
+  print *, 'Enter your number'
+  read *, input
+  
+  if (mod(input,3) == 0 .and. mod(input,5) ==0) then
+     print *, 'FizzBuzz'
+  else if (mod(input,3) == 0) then
+     print *, 'Fizz'
+  else if (mod(input,5) == 0) then
+     print *, 'Buzz'
+  end if
+
+end program fizzbuzz

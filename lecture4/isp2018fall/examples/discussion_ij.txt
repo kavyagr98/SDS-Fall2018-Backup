@@ -1,0 +1,88 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Instructor comments on the ij loop homework
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% part 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// This code is good, uses an appropriately named bool
+
+  for(int i=0;i<10;i++){
+    for(int j=0;j<10;j++){
+      if(i*j>N){
+        cout<<"first pair=("<<i<<","<<j<<")"<<endl;
+        first_pair=true;
+        break;
+      }
+    }
+    if(first_pair){
+      break;
+    }
+  }
+
+%%%%%%%%%%%%%%%%
+// the name of the bool is somewhat inaccurate
+// the "count == false" can be replaced by "not count"
+
+  bool count = false;
+  int j = 1;
+  //exercise one
+  while (count == false){
+    int k = 1;
+    while (j < 10 and k < 10 and count == false){
+      if (j*k > i){
+        cout << j << "," << k << endl;
+        count = true;}
+      k++;}
+    j++;}
+
+%%%%%%%%%%%%%%%%
+// excellent code with boolean test in the loop header
+
+  bool pair_found=false;
+  //first output;
+  for (int i=0;i<10 and !pair_found; i++){
+    for (int j=0;j<10 and !pair_found;j++){
+      if (i*j>N) {
+        cout<<"First output pair:"<<i<<","<<j<<endl;
+        pair_found=true;
+      }
+    }
+  }
+
+%%%%%%%%%%%%%%%%
+// please please please don't use "goto".
+// from now on points will be detracted for this
+
+  for (int i = 0; i < 10; i++) {
+  for (int j = 0; j < 10; j++) {
+    if (i*j > N) {
+      cout << i << "," << j << endl;
+      goto minimum;
+
+%%%%%%%%%%%%%%%%%%%%%%% 2nd part %%%%%%%%%%%%%%%%%%%%%%%%%%
+// correct use of a "sum" variable, and "j" computed from sum and "i"
+
+  for(int sum=1;sum<19;sum++){
+    for(int i=0;i<10&&i<=sum;i++){
+      int j=sum-i;
+      if(i*j>N){
+        cout<<"second_pair=("<<i<<","<<j<<")"<<endl;
+        second_pair=true;
+        break;
+      }
+    }
+    if(second_pair){
+      break;
+    }
+  }
+
+%%%%%%%%%%%%%%%%
+// This uses a triple loop, but the structure of the problem is only 2D
+// the q loop can be removed, because it is only executed for one value of q
+
+  for ( int k=0; k<19 and finishloop == 0; k++)
+    for ( int p=0; p < 10 and finishloop == 0; p++)
+      for ( int q=0; q < 10 and finishloop == 0; q++)
+      {
+        if ( p+q == k )
+          { finishloop = 1;
+            cout << p << "," << q << endl;}
+      }
+

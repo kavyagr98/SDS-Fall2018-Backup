@@ -1,0 +1,17 @@
+program swap
+  implicit none
+  integer :: i=2,j=3
+  call swap(i,j)
+  print *, i, " ",j
+end program swap
+
+contains  
+  subroutine swap (i,j)
+    implicit none    
+    integer :: i,j,hold
+    hold = i
+    i = j
+    j = hold
+  end subroutine swap
+
+

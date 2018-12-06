@@ -1,0 +1,110 @@
+#include <cmath>
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
+#include <vector>
+using std::string;
+using std::cout;
+using std::endl;
+using std::cin;
+using std::vector;
+
+class Person {
+private:
+  int status;
+public: 
+  Person(){status = 0;};
+  Person(int status) : status(status) {};
+  string status_string() {
+    if (status == 0)
+      return "susceptible";
+    else if (status == -1)
+      return "recovered";
+    else if (status == -2)
+      return "inoculated";
+    else if (status >= 1)
+      return "sick";
+  };
+  void update(){ 
+    cout << status << "#";
+    if(status > 1)
+      status--;
+    else if (status == 1)
+      status = -1; 
+  };
+  int get_status(){return status;}
+  void infect(int days_sick){
+    status = days_sick;};
+  bool is_stable(){
+    return (status == -1);
+  };
+};
+
+class Population {
+private:
+  vector<Person>the_population;
+public: 
+  Population(int npeople) {
+    the_population.resize(npeople);
+  };
+  void random_infection(){int infected = rand()%the_population.size();
+      the_population[infected].infect(6);}
+  int count_infected(){
+    int infected = 0;
+    for (auto e : the_population)
+      {if (e.get_status()>=1)
+	  infected++;}
+    return infected;
+  };
+  void update_pop(){for (auto &f : the_population)
+      {f.update();}
+  };
+  void print_pop(){
+    cout << " #sick: " << count_infected() << " : ";
+    for (auto p : the_population ) {
+      if(p.get_status() == -1)
+	cout << " ? ";
+      else if (p.get_status() >= 1)
+	cout << " + "; 
+      else if (p.get_status() == -2)
+	cout << " 0 ";
+      else cout << " - ";
+    }
+  };
+};
+
+int main (){
+  Person joe(0);
+  float bad_luck = float (rand()) / float(RAND_MAX);
+  if (bad_luck>-1) {
+    joe.infect (5);
+    for (int step = 1;joe.is_stable() == false;step++){
+    cout << "On day" << step << ", Joe is " <<joe.status_string() << endl;
+    joe.update(); 
+ }
+  }
+  cout <<"Size of population? " << endl;
+    int popsize = 0;
+  cin >> popsize;
+  Population population(popsize);
+  for (int days = 0; population.count_infected()>0; days++)
+    {cout << "\nIn step " << days; 
+      population.print_pop();
+      population.update_pop();    
+} 
+}
+
+// C-x C-s
+// then exit:
+// C-x C-c
+// if you're stuck 
+// C-g
+// C-k : kill meaning successive line delete
+// C-y : yank back
+// C-v : next screen
+// Esc-v: previous screen
+// C-l : reposition current line
+// Esc > : end of file
+// Esc < : beginning of file

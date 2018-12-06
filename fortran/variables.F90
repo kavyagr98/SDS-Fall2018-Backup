@@ -1,0 +1,13 @@
+program variables
+implicit none
+real :: age, years_left
+real, parameter :: ret_age = 62.
+
+!Assign the age
+age = 27.35
+!Calculate the years to retirement
+years_left = ret_age-age
+
+print *, 'Years to retirement: ', & years_left
+
+end program variables

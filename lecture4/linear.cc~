@@ -1,0 +1,55 @@
+#include <cmath>
+#include <iostream>
+using std::cout;
+using std::endl;
+using std::cin;
+
+class Point {
+private:
+  float x,y;
+public:
+  Point() {}; 
+  Point(float xcoordinate, float ycoordinate){
+    x = xcoordinate, y=ycoordinate;
+  };
+  float distance(Point q) {
+    float dx = x-q.x;
+    float dy = y-q.y;
+    return sqrt(dx*dx+dy*dy);};  
+};
+
+class LinearFunction {
+private:
+  Point a,b;
+public:
+  LinearFunction(Point input_p1, Point input_p2){
+    a=input_p1, b=input_p2;
+  };
+  float evaluate_at(float x){
+    return input_p2.y - ((input_p2.y-input_p1.y)/(input_p2.x-input_p1.x))*(input_p1.x-x);};
+};
+
+int main (){
+  Point p(3.,4.);
+  Point q(5.,6.);
+  LinearFunction line(p,q);
+  cout << "Value at 4.0" << line.evaluate_at(4.0) << endl;
+
+
+}
+
+// to get out of here
+// first save:
+
+// C-x C-s
+// then exit:
+// C-x C-c
+// if you're stuck 
+// C-g
+// C-k : kill meaning successive line delete
+// C-y : yank back
+// C-v : next screen
+// Esc-v: previous screen
+// C-l : reposition current line
+// Esc > : end of file
+// Esc < : beginning of file
